@@ -80,22 +80,22 @@ service keymaster_attestation-1-1 /vendor/bin/hw/vendor.mediatek.hardware.keymas
     seclabel u:r:recovery:s0
 
 on property:vendor.sys.listener.registered=true
-    start gatekeeper-1-0
+    start vendor.gatekeeper-1-0
 
 on property:hwservicemanager.ready=true
     start vendor.keymaster-4-0-trustkernel
     start vendor.gatekeeper-1-0
-    #start keymaster_attestation-1-1
+    start keymaster_attestation-1-1
 
 on property:crypto.ready=0
     stop vendor.keymaster-4-0-trustkernel
-    stop gatekeeper-1-0
+    stop vendor.gatekeeper-1-0
     stop servicemanager
     stop keymaster_attestation-1-1
 
 on property:vendor.sys.listeners.registered=true
     start vendor.keymaster-4-0-trustkernel
-    start gatekeeper-1-0
+    start vendor.gatekeeper-1-0
     start servicemanager
     start keymaster_attestation-1-1
 
@@ -103,7 +103,7 @@ on property:ro.crypto.state=unsupported
     stop teed
     stop vendor.keymaster-4-0-trustkernel
     stop vendor.gatekeeper-1-0
-    #stop keymaster_attestation-1-1
+    stop keymaster_attestation-1-1
     stop servicemanager
     stop hwservicemanager
 
@@ -111,7 +111,7 @@ on property:ro.crypto.state=unencrypted
     stop teed
     stop vendor.keymaster-4-0-trustkernel
     stop vendor.gatekeeper-1-0
-    #stop keymaster_attestation-1-1
+    stop keymaster_attestation-1-1
     stop servicemanager
     stop hwservicemanager
 
